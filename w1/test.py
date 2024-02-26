@@ -1,11 +1,16 @@
 import os
-from w1.main import get_sales_information
-from w1.utils import DataReader
-import constants
-from global_utils import blockPrint, enablePrint
+import sys
+from main import get_sales_information
+from utils import DataReader
 from pprint import pprint
 
 CURRENT_FOLDER = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(CURRENT_FOLDER)
+# Add parent directory to sys.path if not already included
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+import constants
+from global_utils import blockPrint, enablePrint
 
 
 def test_data_reader():

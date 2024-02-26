@@ -1,16 +1,22 @@
-import constants
-from w1.data_processor import DataProcessor
+from data_processor import DataProcessor
 from pprint import pprint
 from typing import Dict
 from tqdm import tqdm
 import os
+import sys
 import argparse
-from global_utils import get_file_name, make_dir, plot_sales_data
 from datetime import datetime
 import json
-
+from utils import *
 
 CURRENT_FOLDER_NAME = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(CURRENT_FOLDER)
+# Add parent directory to sys.path if not already included
+if PARENT_DIR not in sys.path:
+    sys.path.append(PARENT_DIR)
+
+import constants
+from global_utils import get_file_name, make_dir, plot_sales_data
 
 
 def revenue_per_region(dp: DataProcessor) -> Dict:
@@ -44,19 +50,20 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
     }
     """
     ######################################## YOUR CODE HERE ##################################################
-    data_reader = #### [YOUR CODE HERE] ####
-    data_reader_gen = #### [YOUR CODE HERE] ####
+    data_reader_gen: Generator = (row for row in dp.data_reader)
 
     # skip first row as it is the column name
     _ = next(data_reader_gen)
 
     # initialize the aggregate variable
     aggregate = dict()
+    country: str = constants.OutDataColNames.COUNTRY
+    total_price: str = constants.OutDataColNames.TOTAL_PRICE
 
     for row in tqdm(data_reader_gen):
-        if row[constants.OutDataColNames.COUNTRY] not in aggregate:
-            aggregate[row[constants.OutDataColNames.COUNTRY]] = #### [YOUR CODE HERE] ####
-        aggregate[row[constants.OutDataColNames.COUNTRY]] += #### [YOUR CODE HERE] ####
+        if row[country] not in aggregate:
+            aggregate[row[country]] = row[country]
+        aggregate[row[country]] += row[total_price]
 
     return aggregate
     ######################################## YOUR CODE HERE ##################################################

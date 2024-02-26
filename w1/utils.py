@@ -116,14 +116,17 @@ class DataReader:
         # generate each row: dictionary comprehension
         
         for n_row, row in enumerate(open(self._fp, "r")):
-            row_vals = row.strip('\n').split(self._sep)
-            
+            row_vals: List = row.strip('\n').split(self._sep)
+            # ignore the first line since it is the column names
+            # if (n_row) == 0:
+            #     continue
+        
+            # print(row_vals)
             # define the row_vals dictionary 
-            row_vals = #### [YOUR CODE HERE] ####
-            row_vals['n_row'] = #### [YOUR CODE HERE] ####
+            row_dict: Dict = {self._col_names[i]: val for i, val in enumerate(row_vals)}
 
             # return results: 
-            #### [YOUR CODE HERE] ####
+            yield row_dict
     
     ######################################## YOUR CODE HERE ##################################################
 
