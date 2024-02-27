@@ -56,14 +56,14 @@ def revenue_per_region(dp: DataProcessor) -> Dict:
     _ = next(data_reader_gen)
 
     # initialize the aggregate variable
-    aggregate = dict()
+    aggregate: Dict = {}
     country: str = constants.OutDataColNames.COUNTRY
     total_price: str = constants.OutDataColNames.TOTAL_PRICE
 
     for row in tqdm(data_reader_gen):
         if row[country] not in aggregate:
-            aggregate[row[country]] = row[country]
-        aggregate[row[country]] += row[total_price]
+            aggregate[row[country]] = float(row[total_price])
+        aggregate[row[country]] += float(row[total_price])
 
     return aggregate
     ######################################## YOUR CODE HERE ##################################################
