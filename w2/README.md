@@ -1,5 +1,5 @@
 # Comparing Run Time
-### All times are in seconds
+### All times in seconds
 
 ### cpu information
 '''
