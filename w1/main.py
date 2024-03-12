@@ -1,5 +1,5 @@
 from data_processor import DataProcessor
-from pprint import pprint
+from pprint import pprint, pformat
 from typing import Dict
 from tqdm import tqdm
 import os
@@ -7,7 +7,10 @@ import sys
 import argparse
 from datetime import datetime
 import json
+import time
 from utils import *
+
+# "../../something"
 
 CURRENT_FOLDER_NAME = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(CURRENT_FOLDER)
@@ -100,18 +103,27 @@ def main():
     make_dir(output_save_folder)
 
     file_paths = [os.path.join(data_folder_path, file_name) for file_name in files]
+
+    # ----- Start time -----
+    st = time.time() 
+
     revenue_data = [get_sales_information(file_path)
                     for file_path in file_paths]
-
+    
+    en = time.time()
+    # ----- End time ----- 
     pprint(revenue_data)
-
+    with open("revenue_data.json", "w") as f:
+        f.write(json.dumps(revenue_data))
+    
     for yearly_data in revenue_data:
         with open(os.path.join(output_save_folder, f'{yearly_data["file_name"]}.json'), 'w') as f:
             f.write(json.dumps(yearly_data))
 
         plot_sales_data(yearly_revenue=yearly_data['revenue_per_region'], year=yearly_data["file_name"],
                         plot_save_path=os.path.join(output_save_folder, f'{yearly_data["file_name"]}.png'))
-
+    
+    print("Overall time taken : {}".format(en-st))
 
 if __name__ == '__main__':
     main()
