@@ -37,6 +37,7 @@ class DB:
 
         - process_id : TEXT (not null)
         - file_name : TEXT (default is null)
+        - file_path
         - description : TEXT (default is null)
         - start_time : TEXT (not null)
         - end_time : TEXT (default is null)
@@ -45,17 +46,18 @@ class DB:
         Read more about datatypes in Sqlite here -> https://www.sqlite.org/datatype3.html
         """
         CREATE_TABLE_QUERY = f'''
-        CREATE TABLE {self._table_name} (
+        CREATE TABLE IF NOT EXISTS {self._table_name} (
             process_id TEXT PRIMARY KEY NOT NULL, 
             file_name TEXT,
+            file_path TEXT,
             description TEXT,
             start_time TEXT,
             end_time TEXT,
             percentage REAL
         )
         '''
-        cursor = self._connection.execute(CREATE_TABLE_QUERY)
-        cursor.commit()
+        self._connection.execute(CREATE_TABLE_QUERY)
+        self._connection.commit()
 
     def insert(self, process_id, start_time, file_name=None, file_path=None,
                description=None, end_time=None, percentage=None) -> None:
@@ -72,12 +74,29 @@ class DB:
         :return: None
         """
         INSERT_QUERY = f'''
-        INSERT INTO {self._table_name} (
-            (process_id, start_time, file_name, file_path, 
-            description, end_time, percentage)
+        INSERT INTO {self._table_name}
+        (
+            process_id, 
+            file_name, 
+            file_path, 
+            description, 
+            start_time, 
+            end_time, 
+            percentage
         )
+        VALUES (?, ?, ?, ?, ?, ?, ?) 
         '''
-        return None
+        params = [
+            process_id, 
+            file_name, 
+            file_path, 
+            description, 
+            start_time, 
+            end_time, 
+            percentage
+        ]
+        self._connection.execute(INSERT_QUERY, params)
+        self._connection.commit()
 
 
     def read_all(self) -> List[Dict]:
@@ -108,8 +127,10 @@ class DB:
         :param percentage: Percentage of process completed
         :return: None
         """
-    ######################################## YOUR CODE HERE ##################################################
-
-    ######################################## YOUR CODE HERE ##################################################
-
-
+        UPDATE_QUERY = f'''
+        UPDATE {self._table_name}
+        SET percentage = {percentage}
+        WHERE process_id = '{process_id}'
+        '''
+        self._connection.execute(UPDATE_QUERY)
+        self._connection.commit()

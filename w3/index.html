@@ -41,7 +41,7 @@
             var url = new URL(urlString);
 
             // Make a websocket connection
-            var ws = new WebSocket(`ws://localhost:8000/ws`);
+            var ws = new WebSocket(`ws://127.0.0.1:8000/ws`);
 
             // On receiving a message, append it to the unordered list `messages`
             function processMessage(event) {

@@ -61,8 +61,9 @@ async def get() -> List[ProcessStatus]:
     """
     Get all the records from the process table and return it using the pydantic model ProcessStatus
     """
-
     # use DB read_all function to get all the records
     # read_all returns List[Dict]
-    records = DB.read_all()
-    return None
+    db = DB()
+    records = db.read_all()
+
+    return [ProcessStatus(**record) for record in records]

@@ -51,7 +51,7 @@ class DP(DataProcessor):
         aggregate should be 105.58
         """
         process_id = str(uuid.uuid4())
-        self._db.insert(process_id, start_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+        self._db.insert(process_id, start_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'),
                         file_name=self._file_name, file_path=self._fp, description=inspect.stack()[0][3])
 
         # get generator from data_reader
@@ -70,7 +70,7 @@ class DP(DataProcessor):
                 aggregate += self.to_float(row[column_name])
 
         self._db.update_percentage(process_id=process_id, percentage=100)
-        self._db.update_end_time(process_id=process_id, end_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
+        self._db.update_end_time(process_id=process_id, end_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'))
         return aggregate
 
     def describe(self, column_names: List[str]):
@@ -83,7 +83,7 @@ class DP(DataProcessor):
         stats = {name: Stats() for name in column_names}
 
         process_id = str(uuid.uuid4())
-        self._db.insert(process_id, start_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+        self._db.insert(process_id, start_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'),
                         file_name=self._file_name, file_path=self._fp, description=inspect.stack()[0][3])
 
         for row_num, row in enumerate(tqdm(data_reader_gen)):
@@ -99,7 +99,7 @@ class DP(DataProcessor):
             pprint(value.get_stats())
 
         self._db.update_percentage(process_id=process_id, percentage=100)
-        self._db.update_end_time(process_id=process_id, end_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
+        self._db.update_end_time(process_id=process_id, end_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'))
 
 
 def revenue_per_region(dp: DP) -> Dict:
@@ -141,7 +141,7 @@ def revenue_per_region(dp: DP) -> Dict:
     aggregate = dict()
 
     process_id = str(uuid.uuid4())
-    dp.get_db().insert(process_id=process_id, start_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'),
+    dp.get_db().insert(process_id=process_id, start_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'),
                        file_name=dp.get_file_name(), file_path=dp.get_file_path(), description=inspect.stack()[0][3])
 
     for n_row, row in enumerate(tqdm(data_reader_gen)):
@@ -153,7 +153,7 @@ def revenue_per_region(dp: DP) -> Dict:
         aggregate[row[constants.OutDataColNames.COUNTRY]] += dp.to_float(row[constants.OutDataColNames.TOTAL_PRICE])
 
     dp.get_db().update_percentage(process_id=process_id, percentage=100)
-    dp.get_db().update_end_time(process_id=process_id, end_time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
+    dp.get_db().update_end_time(process_id=process_id, end_time=datetime.datetime.now(datetime.UTC).strftime('%Y-%m-%d %H:%M:%S'))
 
     return aggregate
 
