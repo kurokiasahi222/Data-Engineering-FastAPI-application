@@ -44,9 +44,18 @@ class DB:
 
         Read more about datatypes in Sqlite here -> https://www.sqlite.org/datatype3.html
         """
-    ######################################## YOUR CODE HERE ##################################################
-
-    ######################################## YOUR CODE HERE ##################################################
+        CREATE_TABLE_QUERY = f'''
+        CREATE TABLE {self._table_name} (
+            process_id TEXT PRIMARY KEY NOT NULL, 
+            file_name TEXT,
+            description TEXT,
+            start_time TEXT,
+            end_time TEXT,
+            percentage REAL
+        )
+        '''
+        cursor = self._connection.execute(CREATE_TABLE_QUERY)
+        cursor.commit()
 
     def insert(self, process_id, start_time, file_name=None, file_path=None,
                description=None, end_time=None, percentage=None) -> None:
@@ -62,9 +71,14 @@ class DB:
         :param percentage: Percentage of process completed
         :return: None
         """
-    ######################################## YOUR CODE HERE ##################################################
+        INSERT_QUERY = f'''
+        INSERT INTO {self._table_name} (
+            (process_id, start_time, file_name, file_path, 
+            description, end_time, percentage)
+        )
+        '''
+        return None
 
-    ######################################## YOUR CODE HERE ##################################################
 
     def read_all(self) -> List[Dict]:
         data = []
