@@ -18,33 +18,35 @@ class Logger:
         self.f_handler = logging.FileHandler(os.path.join(CURRENT_FOLDER_NAME, 'logs', log_file_name))
 
         # Create formatters and add it to handlers
-        ######################################## YOUR CODE HERE ##################################################
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
         # set the logging formatter to the f_handler
-        ######################################## YOUR CODE HERE ##################################################
-
-        ######################################## YOUR CODE HERE ##################################################
-        # Add handlers to the logger and setlevel to DEBUG
-        ######################################## YOUR CODE HERE ##################################################
+        self.f_handler.setFormatter(formatter)
+        # setlevel to DEBUG && Add handlers to the logger
+        self.logger.addHandler(self.f_handler)
+        self.logger.setLevel(logging.DEBUG)
 
     def warning(self, msg):
-        pass
-        ######################################## YOUR CODE HERE ##################################################
-        ######################################## YOUR CODE HERE ##################################################
+        '''This level indicates something unexpected happened, 
+        and it's usually indicative of some problem. 
+        '''
+        self.logger.warning(msg)
 
     def error(self, msg):
-        pass
-        ######################################## YOUR CODE HERE ##################################################
-        ######################################## YOUR CODE HERE ##################################################
+        '''This level indicates a more serious problem. 
+        The software is unable to perform some function.'''
+        self.logger.error(msg)
 
     def info(self, msg):
-        pass
-        ######################################## YOUR CODE HERE ##################################################
-        ######################################## YOUR CODE HERE ##################################################
+        ''' 
+        This level is used to confirm things are working as expected. 
+        '''
+        self.logger.info(msg)
 
     def debug(self, msg):
-        pass
-        ######################################## YOUR CODE HERE ##################################################
-        ######################################## YOUR CODE HERE ##################################################
+        ''' 
+        This level provides detailed information for diagnosing problems. 
+        '''
+        self.logger.debug(msg)
 
 
 server_logger = Logger(log_file_name='server_logs.txt', module_name='server_logs')
