@@ -2,11 +2,11 @@ import json
 import random
 from tqdm import tqdm
 
-from global_utils import make_dir, human_readable
+from src.global_utils import make_dir, human_readable
 from datetime import timedelta, datetime
 import os
 import inspect
-import constants
+import src.constants as constants
 import argparse
 
 import uuid
