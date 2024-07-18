@@ -6,8 +6,8 @@ import asyncio
 from pydantic import BaseModel
 from starlette.websockets import WebSocket, WebSocketState
 from w3.utils.websocket import ConnectionManager
-from w3.utils.response_model import ProcessStatus
-from w3.utils.database import DB
+from src.utils.response_model import ProcessStatus
+from src.utils.database import DB
 
 app = FastAPI()
 manager = ConnectionManager()

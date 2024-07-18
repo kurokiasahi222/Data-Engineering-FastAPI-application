@@ -1,4 +1,4 @@
-from w4.logger_config import server_logger
+from src.utils.logger_config import server_logger
 from fastapi import FastAPI, WebSocketDisconnect
 from fastapi.responses import HTMLResponse
 from typing import List
@@ -6,8 +6,8 @@ from threading import Thread
 import asyncio
 from starlette.websockets import WebSocket
 from w4.utils.websocket import ConnectionManager
-from w3.utils.response_model import ProcessStatus
-from w3.utils.database import DB
+from src.utils.response_model import ProcessStatus
+from src.utils.database import DB
 
 app = FastAPI()
 manager = ConnectionManager()
@@ -45,7 +45,7 @@ async def get():
 async def get():
     server_logger.info("`/home` API called")
 
-    with open('index.html', 'r') as f:
+    with open("index.html", "r") as f:
         html = f.read()
 
     # render a HTML page
@@ -61,7 +61,14 @@ async def get() -> List[ProcessStatus]:
     processes = db.read_all()
 
     return [
-        ProcessStatus(process_id=process['process_id'], file_name=process['file_name'],
-                      file_path=process['file_path'], description=process['description'],
-                      start_time=process['start_time'], end_time=process['end_time'], percentage=process['percentage'])
-        for process in processes]
+        ProcessStatus(
+            process_id=process["process_id"],
+            file_name=process["file_name"],
+            file_path=process["file_path"],
+            description=process["description"],
+            start_time=process["start_time"],
+            end_time=process["end_time"],
+            percentage=process["percentage"],
+        )
+        for process in processes
+    ]

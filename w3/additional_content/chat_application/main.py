@@ -11,7 +11,7 @@ class ConnectionManager:
     def __init__(self):
         # self.connections contains the chat room to connection mapping
         # Every chat room can contain multiple clients
-        self.connections: Dict[int:List[WebSocket]] = dict()
+        self.connections: Dict[int : List[WebSocket]] = dict()
 
     async def connect(self, websocket: WebSocket, room: int):
         """
@@ -40,7 +40,7 @@ class ConnectionManager:
         while True:
             for room, connections in self.connections.items():
                 for connection in connections:
-                    await connection.send_text('Hi. Mike testing. Mike testing')
+                    await connection.send_text("Hi. Mike testing. Mike testing")
 
             time.sleep(1)
 
@@ -67,7 +67,7 @@ async def websocket_endpoint(websocket: WebSocket, client_id: int, room: int):
 # Below endpoint renders a HTML page
 @app.get("/")
 async def get():
-    with open('index.html', 'r') as f:
+    with open("index.html", "r") as f:
         html = f.read()
 
     # render a HTML page

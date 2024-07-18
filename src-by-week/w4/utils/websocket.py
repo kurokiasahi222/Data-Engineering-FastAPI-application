@@ -1,8 +1,8 @@
-from w4.logger_config import server_logger
+from src.utils.logger_config import server_logger
 from typing import List
 from starlette.websockets import WebSocket, WebSocketState
 import time
-from w3.utils.database import DB
+from src.utils.database import DB
 
 
 class ConnectionManager:
@@ -20,7 +20,7 @@ class ConnectionManager:
 
         # Adding the client connection
         self.connections.append(websocket)
-        server_logger.info(msg='Created a websocket connection')
+        server_logger.info(msg="Created a websocket connection")
 
     async def broadcast(self, data: str):
         """
@@ -28,7 +28,7 @@ class ConnectionManager:
         """
         for connection in self.connections:
             await connection.send_text(data)
-        server_logger.info(msg=f'Broadcasting to all connections : {data}')
+        server_logger.info(msg=f"Broadcasting to all connections : {data}")
 
     async def broadcast_all(self):
         """
@@ -37,12 +37,16 @@ class ConnectionManager:
         while True:
             try:
                 for connection in self.connections:
-                    if (connection.application_state == WebSocketState.CONNECTED and
-                            connection.client_state == WebSocketState.CONNECTED):
+                    if (
+                        connection.application_state == WebSocketState.CONNECTED
+                        and connection.client_state == WebSocketState.CONNECTED
+                    ):
                         processes = self.db.read_all()
                         await connection.send_json(processes)
 
                 time.sleep(1)
 
             except Exception as e:
-                server_logger.error(msg=f'Error in broadcasting to all connections : {str(e)}')
+                server_logger.error(
+                    msg=f"Error in broadcasting to all connections : {str(e)}"
+                )

@@ -34,14 +34,14 @@ class Stats:
         self.calculate_75()
 
         return {
-            'min': self._min,
-            'max': self._max,
-            'mean': self._mean,
-            'median': self._median,
-            'std': self._std,
-            '25': self._25,
-            '50': self._50,
-            '75': self._75
+            "min": self._min,
+            "max": self._max,
+            "mean": self._mean,
+            "median": self._median,
+            "std": self._std,
+            "25": self._25,
+            "50": self._50,
+            "75": self._75,
         }
 
     def update_min(self, val: float) -> None:
@@ -111,23 +111,23 @@ class DataReader:
             'Country': 'Russia',
         }
         """
-    ######################################## YOUR CODE HERE ##################################################
-        # output generator -- use 'yield' keyword 
+        ######################################## YOUR CODE HERE ##################################################
+        # output generator -- use 'yield' keyword
         # generate each row: dictionary comprehension
-        
+
         for n_row, row in enumerate(open(self._fp, "r")):
-            row_vals: List = row.strip('\n').split(self._sep)
+            row_vals: List = row.strip("\n").split(self._sep)
             # ignore the first line since it is the column names
             # if (n_row) == 0:
             #     continue
-        
+
             # print(row_vals)
-            # define the row_vals dictionary 
+            # define the row_vals dictionary
             row_dict: Dict = {self._col_names[i]: val for i, val in enumerate(row_vals)}
 
-            # return results: 
+            # return results:
             yield row_dict
-    
+
     ######################################## YOUR CODE HERE ##################################################
 
     def get_file_path(self):
@@ -135,4 +135,3 @@ class DataReader:
 
     def get_column_names(self):
         return self._col_names
-

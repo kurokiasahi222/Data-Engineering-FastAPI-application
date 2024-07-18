@@ -24,14 +24,14 @@ You've recently accepted a new role as a Data Engineer at bamazon.com Inc., an e
 4. Logging: Implemented multiple log configurations using Python's logging module to enhance monitoring and debugging capabilities.
 
 ## To follow the code on this repo:
-### Install all dependencies
+### 1. Install all dependencies
 - Make you're using Python version >= 3.9.0
 - Install all the modules
 ```
 pip install -r requrirements.txt
 ```
 
-## Generate data: (Must run this to run the program)
+## 2. Generate data: (Must run this to run the program)
 Generate test data (useful for unit testing code)
 ```
 python generate_data.py --type tst
@@ -45,5 +45,31 @@ Generate big data (actual data)
 python generate_data.py --type bg
 ```
 
+# Run tests with prints 
+```
+PYTHONPATH=../ pytest test.py -s
+```
+
+# Run tests without prints 
+```
+PYTHONPATH=../ pytest test.py
+```
+
+# Run the data processing code
+````
+# Run on `test` data
+PYTHONPATH=../ python main.py --type tst
+
+# Run on `small` data
+PYTHONPATH=../ python main.py --type sml
+
+# Run on the `big` data
+PYTHONPATH=../ python main.py --type bg
+````
+
+# Start FastAPI server
+````
+PYTHONPATH=.. uvicorn server:app --workers 2
+````
 ### Thanks you to all the Course Staff.
 Thank you so much to Yang Pei, Wendy Ran Wei, and other Uplimit's staff member for making this awesome course. 

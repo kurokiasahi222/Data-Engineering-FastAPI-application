@@ -11,20 +11,30 @@ if PARENT_DIR not in sys.path:
 import src.constants as constants
 from src.global_utils import blockPrint, enablePrint
 
-def main():
-    col_names = [constants.OutDataColNames.STOCK_CODE, constants.OutDataColNames.DESCRIPTION,
-                 constants.OutDataColNames.UNIT_PRICE, constants.OutDataColNames.QUANTITY,
-                 constants.OutDataColNames.TOTAL_PRICE, constants.OutDataColNames.COUNTRY,
-                 constants.OutDataColNames.INVOICE_NO, constants.OutDataColNames.DATE]
 
-    data_reader = DataReader(fp=os.path.join(CURRENT_FOLDER, '..', 'data', 'tst', '2015.csv'), sep=',',
-                             col_names=col_names)
-    
+def main():
+    col_names = [
+        constants.OutDataColNames.STOCK_CODE,
+        constants.OutDataColNames.DESCRIPTION,
+        constants.OutDataColNames.UNIT_PRICE,
+        constants.OutDataColNames.QUANTITY,
+        constants.OutDataColNames.TOTAL_PRICE,
+        constants.OutDataColNames.COUNTRY,
+        constants.OutDataColNames.INVOICE_NO,
+        constants.OutDataColNames.DATE,
+    ]
+
+    data_reader = DataReader(
+        fp=os.path.join(CURRENT_FOLDER, "..", "data", "tst", "2015.csv"),
+        sep=",",
+        col_names=col_names,
+    )
+
     data_gen = (row for row in data_reader)
     print(next(data_gen))
     print(next(data_gen))
     print(next(data_gen))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
