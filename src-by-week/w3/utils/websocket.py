@@ -1,7 +1,7 @@
 from typing import List
 from starlette.websockets import WebSocket, WebSocketState
 import time
-from w3.utils.database import DB
+from src.utils.database import DB
 
 
 class ConnectionManager:
@@ -34,8 +34,10 @@ class ConnectionManager:
         while True:
             try:
                 for connection in self.connections:
-                    if (connection.application_state == WebSocketState.CONNECTED and
-                            connection.client_state == WebSocketState.CONNECTED):
+                    if (
+                        connection.application_state == WebSocketState.CONNECTED
+                        and connection.client_state == WebSocketState.CONNECTED
+                    ):
                         processes = self.db.read_all()
                         await connection.send_json(processes)
 
