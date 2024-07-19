@@ -9,9 +9,11 @@ from starlette.websockets import WebSocket
 from utils.websocket import ConnectionManager
 from utils.response_model import ProcessStatus
 from utils.database import DB
+from env import config
 
+MODE = config("MODE", default="dev")
 app = FastAPI()
-app.mount("/frontend", StaticFiles(directory="frontend", html=True), name="frontend")
+app.mount("/frontend", StaticFiles(directory="./frontend", html=True), name="frontend")
 manager = ConnectionManager()
 
 # start an asynchronous task that will keep broadcasting the process status to all the connected clients
@@ -51,7 +53,8 @@ async def get():
 @app.get("/health")
 async def get():
     server_logger.info("`/health` API called")
-    return {"status": "ok"}
+    return {"status": "ok", 
+            "MODE": MODE}
 
 
 # Below endpoint to get the initial data

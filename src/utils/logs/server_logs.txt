@@ -83,3 +83,22 @@
 2024-07-18 15:28:20,416 - server_logs - WARNING - Client disconnected
 2024-07-18 15:28:20,440 - server_logs - INFO - Created a websocket connection
 2024-07-18 15:28:44,356 - server_logs - WARNING - Client disconnected
+2024-07-19 17:25:14,424 - server_logs - INFO - `/home` API called
+2024-07-19 17:25:14,761 - server_logs - INFO - Created a websocket connection
+2024-07-19 17:25:17,749 - server_logs - INFO - `/health` API called
+2024-07-19 17:25:17,794 - server_logs - WARNING - Client disconnected
+2024-07-19 17:25:52,147 - server_logs - INFO - `/health` API called
+2024-07-19 17:48:32,136 - server_logs - INFO - `/home` API called
+2024-07-19 17:48:32,355 - server_logs - INFO - Created a websocket connection
+2024-07-19 17:50:16,271 - server_logs - INFO - `/health` API called
+2024-07-19 17:50:16,303 - server_logs - INFO - `/processes` API called
+2024-07-19 18:04:36,765 - server_logs - INFO - `/health` API called
+2024-07-19 18:04:36,767 - server_logs - INFO - `/processes` API called
+2024-07-19 18:06:33,943 - server_logs - INFO - `/health` API called
+2024-07-19 18:06:33,946 - server_logs - INFO - `/processes` API called
+2024-07-19 18:07:42,791 - server_logs - INFO - `/health` API called
+2024-07-19 18:07:42,793 - server_logs - INFO - `/processes` API called
+2024-07-19 18:08:08,826 - server_logs - INFO - `/health` API called
+2024-07-19 18:08:08,828 - server_logs - INFO - `/processes` API called
+2024-07-19 18:08:48,417 - server_logs - INFO - `/health` API called
+2024-07-19 18:08:48,419 - server_logs - INFO - `/processes` API called
