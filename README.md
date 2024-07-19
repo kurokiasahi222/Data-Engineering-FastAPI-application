@@ -31,7 +31,7 @@ You've recently accepted a new role as a Data Engineer at bamazon.com Inc., an e
 pip install -r requrirements.txt
 ```
 
-## 2. Generate data: (Must run this to run the program)
+### 2. Generate data: (Must run this to run the program)
 Generate test data (useful for unit testing code)
 ```
 python generate_data.py --type tst
@@ -45,17 +45,17 @@ Generate big data (actual data)
 python generate_data.py --type bg
 ```
 
-# Run tests with prints 
+### Run tests with prints 
 ```
 PYTHONPATH=../ pytest test.py -s
 ```
 
-# Run tests without prints 
+### Run tests without prints 
 ```
 PYTHONPATH=../ pytest test.py
 ```
 
-# Run the data processing code
+### Run the data processing code
 ````
 # Run on `test` data
 PYTHONPATH=../ python main.py --type tst
@@ -67,9 +67,13 @@ PYTHONPATH=../ python main.py --type sml
 PYTHONPATH=../ python main.py --type bg
 ````
 
-# Start FastAPI server
+### Start FastAPI server
 ````
 PYTHONPATH=.. uvicorn server:app --workers 2
+````
+or
+````
+fastapi run server.py
 ````
 ### Thanks you to all the Course Staff.
 Thank you so much to Yang Pei, Wendy Ran Wei, and other Uplimit's staff member for making this awesome course. 
