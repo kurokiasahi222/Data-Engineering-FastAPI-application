@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+fastapi = "*"
+pydantic = "*"
+tqdm = "*"
+numpy = "*"
+matplotlib = "*"
+pytest = "*"
+starlette = "*"
+uvicorn = "*"
+black = "*"
+python-decouple = "*"
+rav = "*"
+httpx = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"

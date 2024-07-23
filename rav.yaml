@@ -1,0 +1,2 @@
+scripts:
+  runserver: fastapi run src/server.py
