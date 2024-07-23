@@ -1,4 +1,4 @@
-# Intermediate Python
+# Python FastAPI application
 This repo contains the work I have completed through <a href="https://uplimit.com/course/intermediate-python">Uplimit's Intermediate python</a>.
 Course taught by <a href="https://www.linkedin.com/in/pyemma/">Yang Pei</a> and <a href="https://www.linkedin.com/in/wendyranwei/">Wendy Ran Wei</a>. 
 
