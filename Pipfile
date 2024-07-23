@@ -13,6 +13,9 @@ pytest = "*"
 starlette = "*"
 uvicorn = "*"
 black = "*"
+python-decouple = "*"
+rav = "*"
+httpx = "*"
 
 [dev-packages]
 
