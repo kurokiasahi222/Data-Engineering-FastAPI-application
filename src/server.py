@@ -41,7 +41,7 @@ async def websocket_endpoint(websocket: WebSocket):
 @app.get("/")
 async def get():
     server_logger.info("`/home` API called")
-
+    print()
     with open("frontend/index.html", "r") as f:
         html = f.read()
 

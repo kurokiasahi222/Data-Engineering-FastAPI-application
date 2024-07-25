@@ -371,19 +371,16 @@ def bg():
 
 
 if __name__ == "__main__":
-    if os.path.exists(str(CURRENT_FOLDER + "/" + constants.DATA_FOLDER_NAME)):
-        print("Data folder exists...exiting the main function")
-        sys.exit(0)
-
     print("Generate Data")
-    tqdm.write("Generating `test` data")
-    tst()
-
-    tqdm.write("Generating `small` data")
-    sml()
-
-    tqdm.write("Generating `big` data")
-    bg()
+    if os.path.exists(str(CURRENT_FOLDER + "/" + constants.DATA_FOLDER_NAME + "/tst")) == False:
+        tqdm.write("Generating `test` data")
+        tst()
+    if os.path.exists(str(CURRENT_FOLDER + "/" + constants.DATA_FOLDER_NAME + "/sml")) == False:
+        tqdm.write("Generating `small` data")
+        sml()
+    # if os.path.exists(str(CURRENT_FOLDER + "/" + constants.DATA_FOLDER_NAME + "/bg")) == False:
+    #     tqdm.write("Generating `big` data")
+    #     bg()
     
     # parser = argparse.ArgumentParser(
     #     description="Choose from one of these : [tst|sml|bg]"
