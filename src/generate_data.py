@@ -5,6 +5,7 @@ from tqdm import tqdm
 from global_utils import make_dir, human_readable
 from datetime import timedelta, datetime
 import os
+import sys
 import inspect
 import constants as constants
 import argparse
@@ -194,7 +195,7 @@ def generate_file(data_gen_obj, file_details):
 
 def tst():
     data_gen = DataGenerator()
-
+    
     files_to_generate = [
         {
             "folder_name": inspect.stack()[0][3],
@@ -370,25 +371,39 @@ def bg():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(
-        description="Choose from one of these : [tst|sml|bg]"
-    )
-    parser.add_argument(
-        "--type",
-        default="tst",
-        choices=["tst", "sml", "bg"],
-        help="Type of data to generate",
-    )
-    args = parser.parse_args()
+    if os.path.exists(str(CURRENT_FOLDER + "/" + constants.DATA_FOLDER_NAME)):
+        print("Data folder exists...exiting the main function")
+        sys.exit(0)
 
-    if args.type == "tst":
-        tqdm.write("Generating `test` data")
-        tst()
+    print("Generate Data")
+    tqdm.write("Generating `test` data")
+    tst()
 
-    elif args.type == "sml":
-        tqdm.write("Generating `small` data")
-        sml()
+    tqdm.write("Generating `small` data")
+    sml()
 
-    elif args.type == "bg":
-        tqdm.write("Generating `big` data")
-        bg()
+    tqdm.write("Generating `big` data")
+    bg()
+    
+    # parser = argparse.ArgumentParser(
+    #     description="Choose from one of these : [tst|sml|bg]"
+    # )
+    # parser.add_argument(
+    #     "--type",
+    #     default="tst",
+    #     choices=["tst", "sml", "bg"],
+    #     help="Type of data to generate",
+    # )
+    # args = parser.parse_args()
+
+    # if args.type == "tst":
+    #     tqdm.write("Generating `test` data")
+    #     tst()
+
+    # elif args.type == "sml":
+    #     tqdm.write("Generating `small` data")
+    #     sml()
+
+    # elif args.type == "bg":
+    #     tqdm.write("Generating `big` data")
+    #     bg()
