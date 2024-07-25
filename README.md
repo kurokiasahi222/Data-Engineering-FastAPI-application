@@ -12,6 +12,11 @@ Throughout the course, I have gained proficiency in serveral frameworks and APIs
 - __Multiprocessing and multi-threading__: Techniques for optimizing code performance.
 - __SQL Integration__: Integrated the web applications with SQLite.
 - __Advanced Python Concepts__: Generators, comprehensions, and higher-order functions for writing efficient, reusable, and maintainable code.
+### Project addition
+In addition to what we have done during the course, I have added: 
+- __Docker__: Dockerize the entire application
+- __Cloud hosting__: Host the entire application using GCP including Google Cloud Run and Artifact registry. 
+
 
 ###  Project: Data Engineer Role at Bamazon
 Setting the scene... </br>
