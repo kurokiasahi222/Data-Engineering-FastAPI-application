@@ -38,7 +38,10 @@ def main():
 
     file_paths = [os.path.join(data_folder_path, file_name) for file_name in files]
     revenue_data = [get_sales_information(file_path) for file_path in file_paths]
-
+    '''
+    When get_sales_information is called it will initialize DP object and
+    dp will call describe method. Describe method will insert data into sqlite
+    '''
     for yearly_data in revenue_data:
         with open(
             os.path.join(output_save_folder, f'{yearly_data["file_name"]}.json'), "w"

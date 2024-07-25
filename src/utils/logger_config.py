@@ -4,7 +4,6 @@ from global_utils import make_dir
 
 CURRENT_FOLDER_NAME = os.path.dirname(os.path.abspath(__file__))
 
-
 class Logger:
     def __init__(self, log_file_name: str, module_name: str):
         """

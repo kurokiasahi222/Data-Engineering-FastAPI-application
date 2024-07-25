@@ -102,3 +102,9 @@
 2024-07-19 18:08:08,828 - server_logs - INFO - `/processes` API called
 2024-07-19 18:08:48,417 - server_logs - INFO - `/health` API called
 2024-07-19 18:08:48,419 - server_logs - INFO - `/processes` API called
+2024-07-23 18:48:23,401 - server_logs - INFO - `/home` API called
+2024-07-23 18:48:23,605 - server_logs - INFO - Created a websocket connection
+2024-07-23 18:48:28,494 - server_logs - INFO - `/home` API called
+2024-07-23 18:48:28,500 - server_logs - WARNING - Client disconnected
+2024-07-23 18:48:28,561 - server_logs - INFO - Created a websocket connection
+2024-07-23 18:49:40,357 - server_logs - WARNING - Client disconnected
