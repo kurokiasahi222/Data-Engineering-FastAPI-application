@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  app:
+    image: kurok011/data-engineer:latest
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "80:80"  # Adjust if your application uses a different port
+    command: /app/entrypoint.sh
+    environment:
+      - PYTHONUNBUFFERED=1
+    entrypoint: ["/bin/sh", "-c", "chmod +x /app/entrypoint.sh && /app/entrypoint.sh"]
